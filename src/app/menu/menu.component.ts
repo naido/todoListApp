@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HcAuthenticationService } from '../service/hc-authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  //isUserLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(hcAuthenticationService: HcAuthenticationService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    //this.isUserLoggedIn = this.hcAuthenticationService.isUserLoggedIn();  
   }
 
 }

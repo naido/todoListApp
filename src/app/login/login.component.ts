@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Router } from '@angular/router';
+import { HcAuthenticationService } from '../service/hc-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +17,14 @@ export class LoginComponent implements OnInit {
 
   //Router
   
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private hcAuthenticationService: HcAuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   handleLogin() {
-    if(this.username==="naido" && this.password==='dummy') {
+    if(this.hcAuthenticationService.authenticate(this.username, this.password)) {
       this.router.navigate(['welcome', this.username])
       this.invalidLogin = false
     } else {

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export class HelloWorldBean {
+  constructor(public message:string) {}
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +16,7 @@ export class WelcomeDataService {
 
   executeHelloWorldBeanService() {
     //console.log("hello bean service");
-    return this.http.get('http://localhost:8080/hello')
+    //add @CrossOrigin(origins="localhost:4200") on backend RestController
+    return this.http.get<HelloWorldBean>('http://localhost:8080/hello');
   }
 }

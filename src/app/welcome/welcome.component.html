@@ -2,3 +2,8 @@
 <div class="container">
     Welcome {{name}}, it's great having you here! Manage your todos <a routerLink="/todos">here</a>
 </div>
+
+<div class="container">
+    Click here to get message<br>
+    <button (click)="getWelcomeMessage()" class="btn btn-success">Get Message</button>
+</div>

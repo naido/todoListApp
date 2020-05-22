@@ -19,4 +19,10 @@ export class WelcomeDataService {
     //add @CrossOrigin(origins="localhost:4200") on backend RestController
     return this.http.get<HelloWorldBean>('http://localhost:8080/hello');
   }
+
+  executeHelloWorldBeanPathVarService(name) {
+    //console.log("hello bean service");
+    //add @CrossOrigin(origins="localhost:4200") on backend RestController
+    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello/pathVar/${name}`);
+  }
 }

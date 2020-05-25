@@ -18,9 +18,11 @@ export class LoginComponent implements OnInit {
 
   //Router
   
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private hcAuthenticationService: HcAuthenticationService,
-    private basicAuthService: BasicAuthenticationService) { }
+    private basicAuthService: BasicAuthenticationService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -38,18 +40,14 @@ export class LoginComponent implements OnInit {
     this.basicAuthService.executeBasicAuthService(this.username, this.password)
       .subscribe(
         data => {
-          console.log(data)
+          console.log("logging data")
           this.router.navigate(['welcome', this.username])
           this.invalidLogin = false
         },
         error => {
-          console.log(error)
+          console.log("logging error")
           this.invalidLogin=true
         }
       )
-
-    
-    
-  }
-
+ }
 }

@@ -26,6 +26,17 @@ export class BasicAuthenticationService {
 
   logout() {
     sessionStorage.removeItem('authenticatedUser');
+    sessionStorage.removeItem('token');
+  }
+
+  getAuthenticatedUser() {
+    return sessionStorage.getItem('authenticatedUser');
+  }
+
+  getAuthenticationToken() {
+    if(this.getAuthenticatedUser()) {
+      return sessionStorage.getItem('token');
+    }
   }
   
   executeBasicAuthService(username, password) {
@@ -39,7 +50,8 @@ export class BasicAuthenticationService {
     {headers}).pipe(
       map(
         data => {
-          sessionStorage.setItem('autenticatedUser', username)
+          sessionStorage.setItem('authenticatedUser', username)
+          sessionStorage.setItem('token', basicAuthHeaderString)
           return data;
         }
       )

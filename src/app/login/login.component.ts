@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Router } from '@angular/router';
 import { HcAuthenticationService } from '../service/hc-authentication.service';
+import { BasicAuthenticationService } from '../service/basic-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   //Router
   
   constructor(private router: Router,
-    private hcAuthenticationService: HcAuthenticationService) { }
+    private hcAuthenticationService: HcAuthenticationService,
+    private basicAuthService: BasicAuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +32,24 @@ export class LoginComponent implements OnInit {
     } else {
       this.invalidLogin=true
     }
+  }
+
+  handleBasicAuthLogin() {
+    this.basicAuthService.executeBasicAuthService(this.username, this.password)
+      .subscribe(
+        data => {
+          console.log(data)
+          this.router.navigate(['welcome', this.username])
+          this.invalidLogin = false
+        },
+        error => {
+          console.log(error)
+          this.invalidLogin=true
+        }
+      )
+
+    
+    
   }
 
 }
